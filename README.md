@@ -1,5 +1,7 @@
 # EKS-DevSecOps-Pipeline
 
+![architechture](steps/project.png)
+
 ## Project Overview
 
 ![step1a](steps/step1a.png)
