@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stylehub-clothing-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: stylehub-clothing
+  template:
+    metadata:
+      labels:
+        app: stylehub-clothing
+    spec:
+      containers:
+      - name: stylehub-clothing-container
+        image: 851725538748.dkr.ecr.us-east-1.amazonaws.com/stylehub-clothing-site:latest
+        ports:
+        - containerPort: 80

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleHub - Clothing Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>StyleHub</h1>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#men">Men</a></li>
+                    <li><a href="#women">Women</a></li>
+                    <li><a href="#sale">Sale</a></li>
+                </ul>
+            </nav>
+            <div class="icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                <a href="#"><i class="fas fa-user"></i></a>
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Summer Collection 2023</h2>
+                <p>Discover the latest trends in fashion</p>
+                <a href="#products" class="btn">Shop Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="categories" class="categories">
+        <div class="container">
+            <h2 class="section-title">Shop by Category</h2>
+            <div class="category-grid">
+                <a href="#men" class="category-card">
+                    <div class="category-img men-img"></div>
+                    <h3>Men's Collection</h3>
+                </a>
+                <a href="#women" class="category-card">
+                    <div class="category-img women-img"></div>
+                    <h3>Women's Collection</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="men" class="products">
+        <div class="container">
+            <h2 class="section-title">Men's Collection</h2>
+            <div class="product-grid">
+                <!-- Men's Products -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="images/mens-shirt.jpg" alt="Men's Shirt">
+                        <div class="product-tags">
+                            <span class="tag new">New</span>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Classic Oxford Shirt</h3>
+                        <p class="price">$49.99</p>
+                        <div class="product-actions">
+                            <button class="btn-add-cart">Add to Cart</button>
+                            <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="images/mens-jeans.jpg" alt="Men's Jeans">
+                    </div>
+                    <div class="product-info">
+                        <h3>Slim Fit Jeans</h3>
+                        <p class="price">$59.99</p>
+                        <div class="product-actions">
+                            <button class="btn-add-cart">Add to Cart</button>
+                            <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="images/mens-jacket.jpg" alt="Men's Jacket">
+                        <div class="product-tags">
+                            <span class="tag sale">Sale</span>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Casual Denim Jacket</h3>
+                        <p class="price"><span class="original-price">$89.99</span> $69.99</p>
+                        <div class="product-actions">
+                            <button class="btn-add-cart">Add to Cart</button>
+                            <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="images/mens-tshirt.jpg" alt="Men's T-shirt">
+                    </div>
+                    <div class="product-info">
+                        <h3>Basic Cotton T-shirt</h3>
+                        <p class="price">$24.99</p>
+                        <div class="product-actions">
+                            <button class="btn-add-cart">Add to Cart</button>
+                            <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="view-more">
+                <a href="#" class="btn btn-outline">View All Men's Collection</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="women" class="products">
+        <div class="container">
+            <h2 class="section-title">Women's Collection</h2>
+            <div class="product-grid">
+                <!-- Women's Products -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="images/womens-dress.jpg" alt="Women's Dress">
+                        <div class="product-tags">
+                            <span class="tag new">New</span>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Floral Summer Dress</h3>
+                        <p class="price">$69.99</p>
+                        <div class="product-actions">
+                            <button class="btn-add-cart">Add to Cart</button>
+                            <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="images/womens-blouse.jpg" alt="Women's Blouse">
+                    </div>
+                    <div class="product-info">
+                        <h3>Silk Blouse</h3>
+                        <p class="price">$45.99</p>
+                        <div class="product-actions">
+                            <button class="btn-add-cart">Add to Cart</button>
+                            <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="images/womens-jeans.jpg" alt="Women's Jeans">
+                        <div class="product-tags">
+                            <span class="tag sale">Sale</span>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>High-Waist Skinny Jeans</h3>
+                        <p class="price"><span class="original-price">$79.99</span> $59.99</p>
+                        <div class="product-actions">
+                            <button class="btn-add-cart">Add to Cart</button>
+                            <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="images/womens-sweater.jpg" alt="Women's Sweater">
+                    </div>
+                    <div class="product-info">
+                        <h3>Knit Sweater</h3>
+                        <p class="price">$54.99</p>
+                        <div class="product-actions">
+                            <button class="btn-add-cart">Add to Cart</button>
+                            <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="view-more">
+                <a href="#" class="btn btn-outline">View All Women's Collection</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Subscribe to Our Newsletter</h2>
+                <p>Get the latest updates on new products and upcoming sales</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>StyleHub</h3>
+                    <p>Your one-stop destination for trendy and affordable fashion.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="#men">Men's Collection</a></li>
+                        <li><a href="#women">Women's Collection</a></li>
+                        <li><a href="#sale">Sale</a></li>
+                        <li><a href="#">New Arrivals</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <address>
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Fashion St, New York, NY</p>
+                        <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                        <p><i class="fas fa-envelope"></i> info@stylehub.com</p>
+                    </address>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 StyleHub. All Rights Reserved.</p>
+                <div class="payment-icons">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
