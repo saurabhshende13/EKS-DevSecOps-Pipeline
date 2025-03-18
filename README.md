@@ -4,8 +4,6 @@
 
 ## Project Overview
 
-![step1a](steps/step1a.png)
-
 This project demonstrates a **DevSecOps pipeline** to deploy an application on an **EKS cluster** with security and automation best practices. The pipeline leverages:
 
 - **Jenkins** for Continuous Integration and Deployment (CI/CD)
