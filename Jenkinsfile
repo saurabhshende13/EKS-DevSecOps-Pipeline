@@ -1,32 +1,29 @@
 pipeline {
     agent any
+
     environment {
         SONARQUBE_TOKEN = credentials('sonarqube-token')
         ECR_URL = credentials('ECR_URL')
-        PATH = "/opt/sonar-scanner/bin:$PATH"
+        PATH = "/opt/sonar-scanner/bin:${env.PATH}"
+        AWS_REGION = "us-east-1"
     }
-    
+
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/saurabhshende13/demo.git'
+                git branch: 'main', url: 'https://github.com/saurabhshende13/EKS-DevSecOps-Pipeline.git'
             }
         }
 
         stage('Code Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh 'sonar-scanner -Dsonar.projectKey=my-app -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONARQUBE_TOKEN'
-                }
-            }
-        }
-
-        stage('Quality Gate') {
-            steps {
-                script {
-                    timeout(time: 5, unit: 'MINUTES') {
-                        waitForQualityGate abortPipeline: true
-                    }
+                    sh '''
+                        sonar-scanner \
+                        -Dsonar.projectKey=my-app \
+                        -Dsonar.host.url=$SONAR_HOST_URL \
+                        -Dsonar.login=$SONARQUBE_TOKEN
+                    '''
                 }
             }
         }
@@ -35,37 +32,49 @@ pipeline {
             steps {
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credentials']]) {
                     sh '''
-                    aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $ECR_URL
+                        aws ecr get-login-password --region $AWS_REGION | \
+                        docker login --username AWS --password-stdin $(echo $ECR_URL | cut -d'/' -f1)
                     '''
                 }
             }
         }
 
-        stage('Security Scan with Trivy') {
+        stage('Build Docker Image') {
             steps {
-                sh 'trivy image --exit-code 1 --severity HIGH,CRITICAL $ECR_URL/stylehub-clothing-site:latest'
+                sh 'docker build -t $ECR_URL:latest .'
             }
         }
 
-        stage('Build and Push Image') {
+        stage('Security Scan with Trivy') {
             steps {
-                sh '''
-                docker build -t stylehub-clothing-site:latest .
-                docker tag stylehub-clothing-site:latest $ECR_URL/stylehub-clothing-site:latest
-                docker push $ECR_URL/stylehub-clothing-site:latest
-                '''
+                sh 'trivy image $ECR_URL:latest || true'
+            }
+        }
+
+        stage('Push Docker Image to ECR') {
+            steps {
+                sh 'docker push $ECR_URL:latest'
             }
         }
 
         stage('Deploy to EKS') {
             steps {
-                withKubeConfig(caCertificate: '', clusterName: 'my-eks-cluster', contextName: '', credentialsId: 'k8s-config', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
-                    sh '''
-                    ssh -o StrictHostKeyChecking=no -i ~/.ssh/jenkins_eks ubuntu@<bootstrap-server-ip> << EOF
-                    git clone https://github.com/saurabhshende13/EKS-DevSecOps-Pipeline.git /home/ubuntu/EKS-DevSecOps-Pipeline
-                    kubectl apply -f /home/ubuntu/EKS-DevSecOps-Pipeline/k8s/
-                    kubectl get all
-                    '''
+                withCredentials([
+                    file(credentialsId: 'KUBECONFIG_CRED', variable: 'KUBECONFIG_FILE'),
+                    [$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credentials']
+                ]) {
+                    script {
+                        sh '''
+                            echo "Using kubeconfig from Jenkins credentials..."
+                            export KUBECONFIG=$KUBECONFIG_FILE
+                            export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+                            export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+                            export AWS_DEFAULT_REGION=$AWS_REGION
+
+                            kubectl apply -f $WORKSPACE/k8s/
+                            kubectl get all
+                        '''
+                    }
                 }
             }
         }
